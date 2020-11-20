@@ -14,6 +14,7 @@
 (menu-bar-mode -1)
 (global-linum-mode t)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+(setq-default indent-tabs-mode nil)
 
 ;; emacs only defines 8 colors by default; define the other 8 using solarized
 ;; colors
