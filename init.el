@@ -55,11 +55,11 @@
 (dir-locals-set-class-variables
  'nvidia-kernel
  `((nil . ((tags-table-list . ("~/src/nvidia-kernel/build/TAGS"))
-	   (kernel-vendor-include-path . `(,(expand-file-name "~/src/nvidia-kernel/kernel/nvgpu/include")
-					   ,(expand-file-name "~/src/nvidia-kernel/kernel/nvidia/include")))
-	   (kernel-arch . "arm64")
-	   (kernel-build-dir . ,(expand-file-name "~/src/nvidia-kernel/build"))
-	   (kernel-source-tree . ,(expand-file-name "~/src/nvidia-kernel/kernel/kernel-4.9"))))
+           (kernel-vendor-include-path . `(,(expand-file-name "~/src/nvidia-kernel/kernel/nvgpu/include")
+                                           ,(expand-file-name "~/src/nvidia-kernel/kernel/nvidia/include")))
+           (kernel-arch . "arm64")
+           (kernel-build-dir . ,(expand-file-name "~/src/nvidia-kernel/build"))
+           (kernel-source-tree . ,(expand-file-name "~/src/nvidia-kernel/kernel/kernel-4.9"))))
    (c-mode . ((eval . (kernel-mode))))))
 (dir-locals-set-directory-class "~/src/nvidia-kernel" 'nvidia-kernel)
 
@@ -82,7 +82,7 @@
      (kernel-build-dir . ,(expand-file-name "~/src/nvidia-kernel/build"))
      (kernel-arch . "arm64")
      (kernel-vendor-include-path . `(,(expand-file-name "~/src/nvidia-kernel/kernel/nvgpu/include")
-				     ,(expand-file-name "~/src/nvidia-kernel/kernel/nvidia/include")))
+                                     ,(expand-file-name "~/src/nvidia-kernel/kernel/nvidia/include")))
      (tags-table-list "~/src/nvidia-kernel/build/TAGS"))))
 
 ;;; init.el ends here
