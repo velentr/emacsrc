@@ -71,6 +71,33 @@
    (c++-mode . ((eval . (aircam-c++-mode))))))
 (dir-locals-set-directory-class "~/aircam" 'aircam)
 
+;; editing sources with unicode
+(set-language-environment "UTF-8")
+(set-default-coding-systems 'utf-8)
+;; need to easily insert some unicode characters for eg Julia code
+(defconst unicode-char-map
+  '(("alpha"   . "α")
+    ("beta"    . "β")
+    ("Gamma"   . "Γ")
+    ("gamma"   . "γ")
+    ("Delta"   . "Δ")
+    ("delta"   . "δ")
+    ("epsilon" . "ε")
+    ("Pi"      . "Π")
+    ("pi"      . "π")
+    ("rho"     . "ρ")
+    ("Sigma"   . "Σ")
+    ("sigma"   . "σ")
+    ("Omega"   . "Ω")
+    ("omega"   . "ω"))
+  "Mapping for easier insertion of unicode characters.")
+(defun unicode-name-to-char (name)
+  "Convert a unicode NAME into the correct unicode character."
+  (interactive (list (thing-at-point 'word 'no-properties)))
+  (backward-kill-word 1)
+  (insert (alist-get name unicode-char-map name nil 'equal)))
+(define-key evil-insert-state-map (kbd "C-g") #'unicode-name-to-char)
+
 ;; load TAGS from cwd
 (add-to-list 'tags-table-list "./TAGS")
 
