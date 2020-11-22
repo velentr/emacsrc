@@ -104,6 +104,7 @@
 (custom-set-variables
  ;; wtf does emacs think my terminal is light?
  '(frame-background-mode 'dark)
+ '(org-startup-folded t)
  '(safe-local-variable-values
    `((kernel-source-tree . ,(expand-file-name "~/src/nvidia-kernel/kernel/kernel-4.9"))
      (kernel-build-dir . ,(expand-file-name "~/src/nvidia-kernel/build"))
