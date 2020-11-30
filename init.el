@@ -16,6 +16,14 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (setq-default indent-tabs-mode nil)
 
+(defun sane-c-mode ()
+  "Set up sane settings for editing c code."
+  (c-set-style "linux")
+  (setq tab-width 8)
+  (setq indent-tabs-mode t)
+  (set-fill-column 80))
+(add-hook 'c-mode-hook 'sane-c-mode)
+
 ;; emacs only defines 8 colors by default; define the other 8 using solarized
 ;; colors
 (tty-color-define "brightblack"    8 '(  0  43  54))
