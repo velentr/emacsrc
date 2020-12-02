@@ -81,8 +81,9 @@
 (require 'aircam)
 (dir-locals-set-class-variables
  'aircam
- `((c-mode . ((eval . (aircam-c++-mode)))) ; since emacs treats some .h as C files by default
-   (c++-mode . ((eval . (aircam-c++-mode))))))
+ `((c-mode      . ((eval . (aircam-c++-mode)))) ; for header files
+   (c++-mode    . ((eval . (aircam-c++-mode))))
+   (python-mode . ((eval . (aircam-py-mode))))))
 (dir-locals-set-directory-class "~/aircam" 'aircam)
 
 ;; editing sources with unicode
