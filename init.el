@@ -24,6 +24,12 @@
   (set-fill-column 80))
 (add-hook 'c-mode-hook 'sane-c-mode)
 
+(defun sane-elisp-mode ()
+  "Sane defaults for elisp."
+  (setq indent-tabs-mode nil)
+  (set-fill-column 80))
+(add-hook 'emacs-lisp-mode-hook 'sane-elisp-mode)
+
 ;; emacs only defines 8 colors by default; define the other 8 using solarized
 ;; colors
 (tty-color-define "brightblack"    8 '(  0  43  54))
