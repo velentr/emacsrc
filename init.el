@@ -37,6 +37,12 @@
   (set-fill-column 80))
 (add-hook 'emacs-lisp-mode-hook 'sane-elisp-mode)
 
+(defun sane-lua-mode ()
+  "Sane defaults for lua."
+  (setq indent-tabs-mode nil)
+  (set-fill-column 80))
+(add-hook 'lua-mode-hook 'sane-lua-mode)
+
 ;; emacs only defines 8 colors by default; define the other 8 using solarized
 ;; colors
 (tty-color-define "brightblack"    8 '(  0  43  54))
@@ -127,6 +133,7 @@
  ;; wtf does emacs think my terminal is light?
  '(frame-background-mode 'dark)
  '(sh-basic-offset 8)
+ '(lua-indent-level 4)
  '(org-startup-folded t)
  '(safe-local-variable-values
    `((kernel-source-tree . ,(expand-file-name "~/src/nvidia-kernel/kernel/kernel-4.9"))
