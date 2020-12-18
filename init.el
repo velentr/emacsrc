@@ -24,6 +24,13 @@
   (set-fill-column 80))
 (add-hook 'c-mode-hook 'sane-c-mode)
 
+(defun sane-sh-mode ()
+  "Set up sane settings for editing sh code."
+  (setq tab-width 8)
+  (setq indent-tabs-mode t)
+  (set-fill-column 80))
+(add-hook 'sh-mode-hook 'sane-sh-mode)
+
 (defun sane-elisp-mode ()
   "Sane defaults for elisp."
   (setq indent-tabs-mode nil)
@@ -119,6 +126,7 @@
 (custom-set-variables
  ;; wtf does emacs think my terminal is light?
  '(frame-background-mode 'dark)
+ '(sh-basic-offset 8)
  '(org-startup-folded t)
  '(safe-local-variable-values
    `((kernel-source-tree . ,(expand-file-name "~/src/nvidia-kernel/kernel/kernel-4.9"))
