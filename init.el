@@ -68,16 +68,23 @@
 (require 'evil)
 (evil-mode 1)
 
+
 ;; leader commands
 (defvar leader-map (make-sparse-keymap)
   "Keymap for leader sequences.")
 (define-key evil-motion-state-map " " leader-map)
+
 ;; find tags
 (define-key leader-map "t" #'xref-find-definitions)
 (define-key leader-map "r" #'xref-pop-marker-stack)
+
 ;; scan through flycheck errors
 (define-key leader-map "[" (kbd "C-c ! p"))
 (define-key leader-map "]" (kbd "C-c ! n"))
+
+;; run code_format
+(define-key leader-map "f" #'aircam-code-format)
+
 
 ;; set up editing NVIDIA's kernel sources
 (require 'kernel)
