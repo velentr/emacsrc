@@ -4,6 +4,8 @@
 
 ;;; Code:
 
+(package-initialize)
+
 (push "~/src/kernel-mode" load-path)
 (push "~/src/aircam-mode" load-path)
 
@@ -94,7 +96,8 @@
 (require 'aircam)
 (dir-locals-set-class-variables
  'aircam
- `((c-mode      . ((eval . (aircam-c++-mode)))) ; for header files
+ `((c-mode      . ((mode . c++) ; for header files
+                   (eval . (aircam-c++-mode))))
    (c++-mode    . ((eval . (aircam-c++-mode))))
    (python-mode . ((eval . (aircam-py-mode))))))
 (dir-locals-set-directory-class "~/aircam" 'aircam)
