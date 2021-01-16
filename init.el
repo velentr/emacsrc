@@ -69,6 +69,36 @@
 (evil-mode 1)
 
 
+;; Search through the currect git repo for the file matching a glob.
+(defun repo-search-ret ()
+  "Quit the *repo-search* buffer, opening the file under the cursor."
+  (interactive)
+  (let ((file (thing-at-point 'filename)))
+    (quit-window)
+    (find-file file)))
+(defvar repo-search-map (make-sparse-keymap)
+  "Keymap for repo-search minor mode.")
+;; Note that this only works in evil mode; otherwise, (kbd "RET") should be
+;; used.
+(define-key repo-search-map [remap evil-ret] 'repo-search-ret)
+
+(define-minor-mode repo-search-mode
+  "Minor mode for file selection during repo-search."
+  :init-value nil
+  :lighter " RepoSearch"
+  :keymap repo-search-map)
+
+(defun repo-search (glob)
+  "Search through the git repo in the cwd for a file matching GLOB."
+  (interactive "sRepo search glob: ")
+  (with-output-to-temp-buffer
+      "*repo-search*"
+    (call-process
+     "git" nil standard-output nil "ls-files" "-i" "-x" glob)
+    (switch-to-buffer-other-window "*repo-search*")
+    (repo-search-mode t)))
+
+
 ;; leader commands
 (defvar leader-map (make-sparse-keymap)
   "Keymap for leader sequences.")
@@ -84,6 +114,9 @@
 
 ;; run code_format
 (define-key leader-map "f" #'aircam-code-format)
+
+;; search for a file in the git repo
+(define-key leader-map "s" #'repo-search)
 
 
 ;; set up editing NVIDIA's kernel sources
