@@ -94,7 +94,7 @@
   (with-output-to-temp-buffer
       "*repo-search*"
     (call-process
-     "git" nil standard-output nil "ls-files" "-i" "-x" glob)
+     "git" nil standard-output nil "--no-pager" "ls-files" "--" (concat "*" glob "*"))
     (switch-to-buffer-other-window "*repo-search*")
     (repo-search-mode t)))
 
