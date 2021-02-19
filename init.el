@@ -6,6 +6,9 @@
 
 (package-initialize)
 
+(add-to-list 'package-archives
+             '("MELPA" . "https://melpa.org/packages/") t)
+
 (push "~/src/kernel-mode" load-path)
 (push "~/src/aircam-mode" load-path)
 
