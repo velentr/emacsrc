@@ -48,6 +48,12 @@
   (set-fill-column 80))
 (add-hook 'lua-mode-hook 'sane-lua-mode)
 
+(defun sane-erlang-mode ()
+  "Sane defaults for erlang."
+  (setq indent-tabs-mode nil)
+  (set-fill-column 80))
+(add-hook 'erlang-mode-hook 'sane-erlang-mode)
+
 ;; emacs only defines 8 colors by default; define the other 8 using solarized
 ;; colors
 (tty-color-define "brightblack"    8 '(  0  43  54))
