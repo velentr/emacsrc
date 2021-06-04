@@ -11,6 +11,7 @@
 
 (push "~/src/kernel-mode" load-path)
 (push "~/src/aircam-mode" load-path)
+(push "~/src/github-mode" load-path)
 
 ;; quality of life improvements
 (setq create-lockfiles nil)
@@ -54,6 +55,12 @@
   (set-fill-column 80))
 (add-hook 'erlang-mode-hook 'sane-erlang-mode)
 
+(defun sane-bazel-mode ()
+  "Sane defaults for bazel."
+  (setq indent-tabs-mode nil)
+  (set-fill-column 100))
+(add-hook 'bazel-mode-hook 'sane-bazel-mode)
+
 ;; emacs only defines 8 colors by default; define the other 8 using solarized
 ;; colors
 (tty-color-define "brightblack"    8 '(  0  43  54))
@@ -74,6 +81,9 @@
 (require 'flycheck)
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
+;; make code review a little less terrible
+(require 'github)
+
 (require 'evil)
 (evil-mode 1)
 
@@ -85,11 +95,13 @@
   (let ((file (thing-at-point 'filename)))
     (quit-window)
     (find-file file)))
-(defvar repo-search-map (make-sparse-keymap)
+(defvar repo-search-map
+  (let ((map (make-sparse-keymap)))
+    ;; Note that this only works in evil mode; otherwise, (kbd "RET") should be
+    ;; used.
+    (define-key map [remap evil-ret] 'repo-search-ret)
+    map)
   "Keymap for repo-search minor mode.")
-;; Note that this only works in evil mode; otherwise, (kbd "RET") should be
-;; used.
-(define-key repo-search-map [remap evil-ret] 'repo-search-ret)
 
 (define-minor-mode repo-search-mode
   "Minor mode for file selection during repo-search."
@@ -126,6 +138,12 @@
 
 ;; search for a file in the git repo
 (define-key leader-map "s" #'repo-search)
+
+;; rebinding some of the github stuff to work better with evil-mode
+(define-key leader-map "g" #'gh-open-buffer)
+(define-key leader-map "r" #'gh-refresh-buffer)
+(define-key leader-map (kbd "RET") #'gh-select-pr)
+(define-key leader-map "u" #'gh-move-up-buffer)
 
 
 ;; set up editing NVIDIA's kernel sources
