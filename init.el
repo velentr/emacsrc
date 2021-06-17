@@ -143,7 +143,22 @@
 (define-key leader-map "g" #'gh-open-buffer)
 (define-key leader-map "r" #'gh-refresh-buffer)
 (define-key leader-map (kbd "RET") #'gh-select-pr)
-(define-key leader-map "u" #'gh-move-up-buffer)
+
+(define-key leader-map (kbd "u")
+  (lambda ()
+    (interactive)
+    (cond
+     ((eq major-mode 'github-mode)
+      (gh-move-up-buffer))
+     ((or (eq major-mode 'c-mode)
+          (eq major-mode 'c++-mode))
+      (cond
+       ((string-suffix-p ".h" buffer-file-name)
+        (find-file (concat (substring buffer-file-name nil -2) ".cc")))
+       ((string-suffix-p ".c" buffer-file-name)
+        (find-file (concat (substring buffer-file-name nil -2) ".h")))
+       ((string-suffix-p ".cc" buffer-file-name)
+        (find-file (concat (substring buffer-file-name nil -3) ".h"))))))))
 
 
 ;; set up editing NVIDIA's kernel sources
