@@ -87,6 +87,9 @@
 (require 'evil)
 (evil-mode 1)
 
+(require 'company)
+(add-hook 'after-init-hook #'global-company-mode)
+
 
 ;; Search through the currect git repo for the file matching a glob.
 (defun repo-search-ret ()
