@@ -146,6 +146,7 @@
 (define-key leader-map "g" #'gh-open-buffer)
 (define-key leader-map "r" #'gh-refresh-buffer)
 (define-key leader-map (kbd "RET") #'gh-select-pr)
+(define-key leader-map "m" #'gh-mergequeue)
 
 (define-key leader-map (kbd "u")
   (lambda ()
