@@ -12,6 +12,7 @@
 (push "~/src/kernel-mode" load-path)
 (push "~/src/aircam-mode" load-path)
 (push "~/src/github-mode" load-path)
+(push "~/src/worklog" load-path)
 
 ;; quality of life improvements
 (setq create-lockfiles nil)
@@ -83,6 +84,8 @@
 
 ;; make code review a little less terrible
 (require 'github)
+
+(require 'worklog)
 
 (require 'evil)
 (evil-mode 1)
