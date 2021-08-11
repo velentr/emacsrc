@@ -148,8 +148,10 @@
 ;; rebinding some of the github stuff to work better with evil-mode
 (define-key leader-map "g" #'gh-open-buffer)
 (define-key leader-map "r" #'gh-refresh-buffer)
-(define-key leader-map (kbd "RET") #'gh-select-pr)
 (define-key leader-map "m" #'gh-mergequeue)
+
+;; bindings for worklogs
+(define-key leader-map "d" #'worklog-dashboard)
 
 (define-key leader-map (kbd "u")
   (lambda ()
@@ -166,6 +168,15 @@
         (find-file (concat (substring buffer-file-name nil -2) ".h")))
        ((string-suffix-p ".cc" buffer-file-name)
         (find-file (concat (substring buffer-file-name nil -3) ".h"))))))))
+
+(define-key leader-map (kbd "RET")
+  (lambda ()
+    (interactive)
+    (cond
+     ((eq major-mode 'github-mode)
+      (gh-select-pr))
+     ((eq major-mode 'worklog-mode)
+      (worklog-open)))))
 
 
 ;; set up editing NVIDIA's kernel sources
