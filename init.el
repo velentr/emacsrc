@@ -44,6 +44,12 @@
   (set-fill-column 80))
 (add-hook 'emacs-lisp-mode-hook 'sane-elisp-mode)
 
+(defun sane-scheme-mode ()
+  "Sane defaults for scheme."
+  (setq indent-tabs-mode nil)
+  (set-fill-column 80))
+(add-hook 'scheme-mode-hook 'sane-scheme-mode)
+
 (defun sane-lua-mode ()
   "Sane defaults for lua."
   (setq indent-tabs-mode nil)
